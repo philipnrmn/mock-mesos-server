@@ -9,8 +9,8 @@ Note you will need [mesos-go](https://github.com/mesos/mesos-go) on your GOPATH.
 
 ## Test Fixtures
 
-Each subdirectory in this directory contains fixtures for a test case. For example, the 'empty' subdirectory contains
-response which the Mesos agent operator API would yield if no tasks were running on the agent. 
+Each subdirectory in the testdata directory contains fixtures for a test case. For example, the 'empty' subdirectory 
+contains a response which the Mesos agent operator API would yield if no tasks were running on the agent. 
 
 As this plugin communicates with Mesos via protobuf, and the binary protobuf format is not human-readable nor human-
 editable, each file is in JSON format. Running `go generate` from the root of the directory will compile these JSON
