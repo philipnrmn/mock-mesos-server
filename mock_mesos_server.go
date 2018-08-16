@@ -1,10 +1,5 @@
 package dcos_containers
 
-// NOTE: this file relies on protobuf fixtures. These are binary files and
-// cannot readily be changed. We therefore provide the go generate step below
-// which serializes the contents of json files in the testdata directory to
-// protobuf.
-//
 // You should run 'go generate' every time you change one of the json files in
 // the testdata directory, and commit both the changed json file and the
 // changed binary file.
