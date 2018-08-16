@@ -1,4 +1,4 @@
-package dcos_containers
+package mock
 
 // You should run 'go generate' every time you change one of the json files in
 // the testdata directory, and commit both the changed json file and the
