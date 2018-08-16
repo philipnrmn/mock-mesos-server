@@ -1,6 +1,6 @@
-// Gen is intended to be called via go generate from the root of the
-// dcos_containers plugin directory. It finds every json fixture in the testdata
-// directory and serializes it as protobuf.
+// Gen is intended to be called via go generate from the root of the project
+// directory. It finds every json fixture in the ./testdata directory and 
+// serializes it to protobuf binary format.
 //
 // You should run 'go generate' every time you change one of the json files in
 // the testdata directory, and commit both the changed json file and the
