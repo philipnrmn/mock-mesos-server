@@ -2,6 +2,12 @@
 
 A golang test utility for mocking Mesos server requests. 
 
+It allows you to mock requests against the 
+[mesos operator API](http://mesos.apache.org/documentation/latest/operator-http-api/) using a real HTTP server in 
+protobuf binary format. 
+
+## Usage
+
 Copy (or better still, [drop](https://github.com/matryer/drop)) `mock_mesos_server.go` and `cmd/gen.go` into your
 project, create fixtures as described below, and run `go generate`. 
 
