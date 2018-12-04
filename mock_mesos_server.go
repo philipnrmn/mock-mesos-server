@@ -22,7 +22,7 @@ var (
 
 // startTestServer starts a server and serves the specified fixture's content
 // at /api/v1
-func startTestServer(t *testing.T, fixture string) (*httptest.Server, func()) {
+func startTestServer(t *testing.T, fixture string) *httptest.Server {
 	router := http.NewServeMux()
 	router.HandleFunc("/api/v1", func(w http.ResponseWriter, r *http.Request) {
 		body, _ := ioutil.ReadAll(r.Body)
@@ -42,10 +42,7 @@ func startTestServer(t *testing.T, fixture string) (*httptest.Server, func()) {
 		t.Fatal("Body contained an unknown request: ", body)
 		return
 	})
-	server := httptest.NewServer(router)
-
-	return server, server.Close
-
+	return httptest.NewServer(router)
 }
 
 // loadFixture retrieves data from a file in ./testdata
