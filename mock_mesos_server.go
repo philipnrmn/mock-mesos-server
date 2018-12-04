@@ -39,7 +39,8 @@ func startTestServer(t *testing.T, fixture string) (*httptest.Server, func()) {
 			w.Write(state)
 			return
 		}
-		panic("Body contained an unknown request: " + string(body))
+		t.Fatal("Body contained an unknown request: ", body)
+		return
 	})
 	server := httptest.NewServer(router)
 
