@@ -27,23 +27,24 @@ var (
 // at /api/v1
 func startTestServer(t *testing.T, fixture string) *httptest.Server {
 	router := http.NewServeMux()
+	containers, cOK := loadFixture(t, filepath.Join(fixture, "containers.bin"))
+	state, sOK := loadFixture(t, filepath.Join(fixture, "state.bin"))
+	tasks, tOK := loadFixture(t, filepath.Join(fixture, "tasks.bin"))
+
 	router.HandleFunc("/api/v1", func(w http.ResponseWriter, r *http.Request) {
 		body, _ := ioutil.ReadAll(r.Body)
 
 		w.Header().Set("Content-Type", "application/x-protobuf")
 		w.WriteHeader(http.StatusOK)
-		if bytes.Equal(body, GET_CONTAINERS) {
-			containers := loadFixture(t, filepath.Join(fixture, "containers.bin"))
+		if bytes.Equal(body, GET_CONTAINERS) && cOK {
 			w.Write(containers)
 			return
 		}
-		if bytes.Equal(body, GET_STATE) {
-			state := loadFixture(t, filepath.Join(fixture, "state.bin"))
+		if bytes.Equal(body, GET_STATE) && sOK {
 			w.Write(state)
 			return
 		}
-		if bytes.Equal(body, GET_TASKS) {
-			tasks := loadFixture(t, filepath.Join(fixture, "tasks.bin"))
+		if bytes.Equal(body, GET_TASKS) && tOK {
 			w.Write(tasks)
 			return
 		}
