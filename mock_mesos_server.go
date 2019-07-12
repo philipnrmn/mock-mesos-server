@@ -46,7 +46,7 @@ func startTestServer(t *testing.T, fixture string) *httptest.Server {
 			w.Write(tasks)
 			return
 		}
-		t.Fatal("Body contained an unknown request: ", body)
+		t.Errorf("Unknown request to mock-mesos-server: %s", body)
 		return
 	})
 	return httptest.NewServer(router)
@@ -57,7 +57,7 @@ func loadFixture(t *testing.T, filename string) []byte {
 	path := filepath.Join("testdata", filename)
 	bytes, err := ioutil.ReadFile(path)
 	if err != nil {
-		t.Fatal(err)
+		t.Error(err)
 	}
 	return bytes
 }
