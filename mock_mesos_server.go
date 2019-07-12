@@ -10,6 +10,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"path/filepath"
 	"testing"
 )
@@ -53,11 +54,15 @@ func startTestServer(t *testing.T, fixture string) *httptest.Server {
 }
 
 // loadFixture retrieves data from a file in ./testdata
-func loadFixture(t *testing.T, filename string) []byte {
+func loadFixture(t *testing.T, filename string) ([]byte, bool) {
 	path := filepath.Join("testdata", filename)
+	if _, err := os.Stat(path); err != nil {
+		// Can't access file - probably not defined
+		return []byte{}, false
+	}
 	bytes, err := ioutil.ReadFile(path)
 	if err != nil {
 		t.Error(err)
 	}
-	return bytes
+	return bytes, err == nil
 }
